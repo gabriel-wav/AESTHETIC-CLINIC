@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Estética Revitalize</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">🌿 Clínica Revitalize</a>
+        <div class="navbar-links">
+            {{#if session.user_id}}
+                <a href="/admin">Dashboard</a>
+                <a href="/admin/procedimentos">Procedimentos</a>
+                <a href="/admin/agendamentos">Agendamentos</a>
+                <a href="/logout" class="btn btn-danger" style="color: white;">Sair ({{session.user_name}})</a>
+            {{else}}
+                <a href="/">Home</a>
+                <a href="/agendar">Agendar Horário</a>
+                <a href="/login">Restrito</a>
+            {{/if}}
+        </div>
+    </nav>
+
+    <main class="container">
+        {{#if error}} <div class="alert alert-danger">{{error}}</div> {{/if}}
+        {{#if success}} <div class="alert alert-success">{{success}}</div> {{/if}}
+        
+        {{{body}}}
+    </main>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

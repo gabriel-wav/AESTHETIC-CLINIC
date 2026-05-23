@@ -1,0 +1,25 @@
+<div class="card">
+    <h2>Agendamentos Recebidos</h2>
+    <table class="tabela-dados">
+        <thead>
+            <tr>
+                <th>Data / Hora</th>
+                <th>Cliente</th>
+                <th>Telefone</th>
+                <th>Procedimento</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each agendamentos}}
+            <tr>
+                <td><strong>{{this.data_formatada}}</strong></td>
+                <td>{{this.cliente_nome}}</td>
+                <td>{{this.cliente_telefone}}</td>
+                <td>{{this.procedimento_nome}}</td>
+                <td>{{this.status}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

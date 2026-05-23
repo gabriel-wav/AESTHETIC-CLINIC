@@ -1,0 +1,86 @@
+:root {
+    --cor-primaria: #2E8B57; /* Verde Clínica */
+    --cor-secundaria: #4CAF50; /* Verde Claro */
+    --cor-fundo: #F4F9F4;
+    --cor-texto: #333;
+    --cor-alerta: #FFF3CD;
+    --cor-sucesso: #D4EDDA;
+    --sombra: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    margin: 0;
+    padding-top: 70px;
+}
+
+.navbar {
+    background-color: #FFFFFF;
+    color: var(--cor-primaria);
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-bottom: 3px solid var(--cor-primaria);
+}
+
+.navbar-brand { font-size: 1.5rem; font-weight: bold; color: var(--cor-primaria); text-decoration: none;}
+.navbar-links a { color: #555; text-decoration: none; padding: 0 1rem; font-weight: 500; }
+.navbar-links a:hover { color: var(--cor-primaria); }
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn-primary { background-color: var(--cor-primaria); color: white; }
+.btn-primary:hover { background-color: #246B43; }
+.btn-danger { background-color: #e74c3c; color: white; }
+.btn-secondary { background-color: #7f8c8d; color: white; }
+
+.container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-top: 4px solid var(--cor-secundaria);
+}
+
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--cor-primaria);}
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 0.7rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+}
+
+.alert { padding: 1rem; border-radius: 4px; margin-bottom: 1rem; text-align: center;}
+.alert-danger { background-color: #f8d7da; color: #721c24; }
+.alert-success { background-color: var(--cor-sucesso); color: #155724; }
+
+.tabela-dados { width: 100%; border-collapse: collapse; margin-top: 1rem;}
+.tabela-dados th, .tabela-dados td { padding: 1rem; border-bottom: 1px solid #eee; text-align: left; }
+.tabela-dados th { background-color: var(--cor-primaria); color: white; }
+
+.modal {
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center;
+}
+.modal-content { background-color: white; padding: 2rem; border-radius: 8px; width: 500px; position: relative;}
+.close-modal { position: absolute; top: 10px; right: 20px; font-size: 1.5rem; cursor: pointer; }
