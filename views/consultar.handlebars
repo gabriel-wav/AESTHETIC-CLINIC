@@ -1,27 +1,55 @@
 <div class="card">
-    <h2 style="color: var(--cor-primaria);">Consultar seu Agendamento</h2>
-    <form action="/consultar" method="POST">
-        <div class="form-group">
-            <label>Digite seu nome completo</label>
-            <input type="text" name="cliente_nome" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
+    <h2 style="color: var(--cor-primaria); margin-bottom: 0.25rem;">Meus Agendamentos</h2>
+    <p style="color: #666; margin-bottom: 1.5rem;">Acompanhe o status dos seus atendimentos na clínica.</p>
+
+    {{#if agendamentos.length}}
+    <table class="tabela-dados">
+        <thead>
+            <tr>
+                <th>Procedimento</th>
+                <th>Data / Hora</th>
+                <th>Status</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each agendamentos}}
+            <tr>
+                <td><strong>{{this.procedimento_nome}}</strong></td>
+                <td>{{this.data_formatada}}</td>
+                <td>
+                    {{#if (eq this.status "Realizado")}}
+                        <span class="status-badge status-realizado">✔ Realizado</span>
+                    {{else if (eq this.status "Cancelado")}}
+                        <span class="status-badge status-cancelado">❌ Cancelado</span>
+                    {{else}}
+                        <span class="status-badge status-pendente">⏳ Pendente</span>
+                    {{/if}}
+                </td>
+                <td>
+                    {{#if (eq this.status "Pendente")}}
+                    <form action="/consultar/cancelar/{{this.id}}" method="POST"
+                          onsubmit="return confirm('Cancelar este agendamento?');">
+                        <button type="submit" class="btn btn-danger" style="padding: 0.3rem 0.7rem; font-size: 0.82rem;">
+                            Cancelar
+                        </button>
+                    </form>
+                    {{else}}
+                        <span style="color: #bbb; font-size: 0.85rem;">—</span>
+                    {{/if}}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="consulta-vazia">
+        <p>Você ainda não tem agendamentos.</p>
+        <a href="/agendar" class="btn btn-primary" style="margin-top: 0.5rem;">Agendar agora</a>
+    </div>
+    {{/if}}
 </div>
 
-{{#if searched}}
-<div class="card">
-    <h3>Resultado da Busca:</h3>
-    <table class="tabela-dados">
-        {{#each agendamentos}}
-        <tr>
-            <td>{{this.procedimento_nome}}</td>
-            <td>{{this.data_formatada}}</td>
-            <td><strong>{{this.status}}</strong></td>
-        </tr>
-        {{else}}
-        <p>Nenhum agendamento encontrado.</p>
-        {{/each}}
-    </table>
+<div style="margin-top: 1rem;">
+    <a href="/agendar" class="btn btn-primary">+ Novo Agendamento</a>
 </div>
-{{/if}}

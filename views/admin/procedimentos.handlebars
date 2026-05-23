@@ -4,6 +4,10 @@
         <button class="btn btn-primary" onclick="abrirModalNovo()">+ Novo Procedimento</button>
     </div>
 
+    {{#if error}}
+    <div class="alert alert-danger" style="margin-top: 1rem;">{{error}}</div>
+    {{/if}}
+
     <table class="tabela-dados">
         <thead>
             <tr>
@@ -11,22 +15,53 @@
                 <th>Nome</th>
                 <th>Tempo</th>
                 <th>Preço</th>
+                <th>Status</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
             {{#each procedimentos}}
-            <tr>
+            <tr style="{{#unless this.ativo}}opacity: 0.5;{{/unless}}">
                 <td>{{this.id}}</td>
-                <td>{{this.nome}}</td>
+                <td>
+                    {{this.nome}}
+                    {{#unless this.ativo}}
+                        <span style="font-size: 0.75rem; background: #f8d7da; color: #721c24; padding: 0.15rem 0.5rem; border-radius: 10px; margin-left: 0.4rem;">Inativo</span>
+                    {{/unless}}
+                </td>
                 <td>{{this.duracao_minutos}}m</td>
                 <td>R$ {{this.preco}}</td>
                 <td>
-                    <button class="btn btn-secondary" onclick="abrirModalEditar('{{this.id}}', '{{this.nome}}', '{{this.descricao}}', '{{this.duracao_minutos}}', '{{this.preco}}')">Editar</button>
-                    <form action="/admin/procedimentos/excluir/{{this.id}}" method="POST" style="display:inline;" onsubmit="return confirm('Deseja excluir?');">
-                        <button type="submit" class="btn btn-danger">Excluir</button>
-                    </form>
+                    {{#if this.ativo}}
+                        <span style="color: #155724; font-weight: 600; font-size: 0.85rem;">● Ativo</span>
+                    {{else}}
+                        <span style="color: #721c24; font-weight: 600; font-size: 0.85rem;">● Inativo</span>
+                    {{/if}}
                 </td>
+                <td style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    {{#if this.ativo}}
+                        <button class="btn btn-secondary"
+                            onclick="abrirModalEditar('{{this.id}}', '{{this.nome}}', '{{this.descricao}}', '{{this.duracao_minutos}}', '{{this.preco}}')">
+                            Editar
+                        </button>
+                        <form action="/admin/procedimentos/excluir/{{this.id}}" method="POST" style="display:inline;"
+                            onsubmit="return confirm('Excluir este procedimento? Se tiver agendamentos vinculados, será desativado.');">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    {{else}}
+                        <form action="/admin/procedimentos/reativar/{{this.id}}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Reativar</button>
+                        </form>
+                        <form action="/admin/procedimentos/excluir/{{this.id}}" method="POST" style="display:inline;"
+                            onsubmit="return confirm('Excluir permanentemente?');">
+                            <button type="submit" class="btn btn-danger" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">Excluir</button>
+                        </form>
+                    {{/if}}
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="6" style="text-align:center; color:#888;">Nenhum procedimento cadastrado.</td>
             </tr>
             {{/each}}
         </tbody>
@@ -35,7 +70,7 @@
 
 <div id="modal-procedimento" class="modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="fecharModal()">&times;</span>
+        <span class="close-modal" onclick="fecharModal('modal-procedimento')">&times;</span>
         <h3 id="modal-titulo">Procedimento</h3>
         <form action="/admin/procedimentos/salvar" method="POST">
             <input type="hidden" id="procedimento-id" name="id">
@@ -50,11 +85,11 @@
             <div style="display: flex; gap: 10px;">
                 <div class="form-group" style="flex: 1;">
                     <label>Duração (minutos)</label>
-                    <input type="number" id="duracao_minutos" name="duracao_minutos" required>
+                    <input type="number" id="duracao_minutos" name="duracao_minutos" min="1" required>
                 </div>
                 <div class="form-group" style="flex: 1;">
                     <label>Preço (R$)</label>
-                    <input type="number" step="0.01" id="preco" name="preco" required>
+                    <input type="number" step="0.01" id="preco" name="preco" min="0" required>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar</button>

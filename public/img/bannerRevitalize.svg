@@ -1,0 +1,36 @@
+<svg width="100%" viewBox="0 0 680 200" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Banner Clínica Estética Revitalize</title>
+<desc>Banner verde e branco com folhas decorativas e slogan da clínica</desc>
+
+<rect x="0" y="0" width="680" height="200" fill="#2e8b57"/>
+
+<ellipse cx="30" cy="180" rx="70" ry="45" fill="#246b43"/>
+<ellipse cx="650" cy="20" rx="70" ry="45" fill="#246b43"/>
+<ellipse cx="0" cy="60" rx="55" ry="35" fill="#246b43"/>
+<ellipse cx="680" cy="140" rx="55" ry="35" fill="#246b43"/>
+
+<ellipse cx="80" cy="185" rx="50" ry="30" fill="#3aad6e"/>
+<ellipse cx="600" cy="15" rx="50" ry="30" fill="#3aad6e"/>
+
+<path d="M55 200 Q40 165 75 150 Q60 170 55 200Z" fill="#4caf50"/>
+<path d="M30 200 Q55 170 80 180 Q55 178 30 200Z" fill="#4caf50"/>
+<path d="M600 0 Q620 25 600 45 Q608 22 600 0Z" fill="#4caf50"/>
+<path d="M625 0 Q615 30 640 20 Q630 12 625 0Z" fill="#4caf50"/>
+
+<path d="M600 200 Q615 175 640 180 Q622 182 600 200Z" fill="#246b43"/>
+<path d="M625 200 Q610 170 645 165 Q635 178 625 200Z" fill="#3aad6e"/>
+<path d="M650 200 Q640 175 668 172 Q660 185 650 200Z" fill="#4caf50"/>
+
+<path d="M35 0 Q22 28 45 35 Q30 18 35 0Z" fill="#246b43"/>
+<path d="M10 0 Q30 20 18 42 Q12 22 10 0Z" fill="#3aad6e"/>
+
+<rect x="140" y="30" width="400" height="140" rx="6" fill="#ffffff" opacity="0.08"/>
+
+<text x="340" y="95" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#ffffff" letter-spacing="1">🌿 Clínica Revitalize</text>
+<text x="340" y="128" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="400" fill="#d4f0e0" letter-spacing="2">ESTÉTICA · BEM-ESTAR · CUIDADO</text>
+
+<line x1="230" y1="142" x2="450" y2="142" stroke="#4caf50" stroke-width="1.5"/>
+<circle cx="340" cy="142" r="3" fill="#4caf50"/>
+
+<text x="340" y="163" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#a8dfc0" letter-spacing="1">Agende seu horário e cuide de você</text>
+</svg>

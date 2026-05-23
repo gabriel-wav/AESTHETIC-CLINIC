@@ -5,20 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Estética Revitalize</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 </head>
 <body>
     <nav class="navbar">
         <a href="/" class="navbar-brand">🌿 Clínica Revitalize</a>
         <div class="navbar-links">
             {{#if session.user_id}}
+                {{!-- ADMIN LOGADO --}}
                 <a href="/admin">Dashboard</a>
                 <a href="/admin/procedimentos">Procedimentos</a>
                 <a href="/admin/agendamentos">Agendamentos</a>
                 <a href="/logout" class="btn btn-danger" style="color: white;">Sair ({{session.user_name}})</a>
-            {{else}}
+
+            {{else if session.cliente_id}}
+                {{!-- CLIENTE LOGADO --}}
                 <a href="/">Home</a>
-                <a href="/agendar">Agendar Horário</a>
-                <a href="/login">Restrito</a>
+                <a href="/agendar">Agendar</a>
+                <a href="/consultar">Meus Agendamentos</a>
+                <a href="/cliente/logout" class="btn btn-secondary" style="color: white; padding: 0.4rem 1rem;">Sair ({{session.cliente_name}})</a>
+
+            {{else}}
+                {{!-- PÚBLICO --}}
+                <a href="/">Home</a>
+                <a href="/cliente/login">Login</a>
+                <a href="/login" style="color: #aaa; font-size: 0.85rem;">Restrito</a>
             {{/if}}
         </div>
     </nav>
@@ -26,7 +37,7 @@
     <main class="container">
         {{#if error}} <div class="alert alert-danger">{{error}}</div> {{/if}}
         {{#if success}} <div class="alert alert-success">{{success}}</div> {{/if}}
-        
+
         {{{body}}}
     </main>
 

@@ -1,6 +1,6 @@
 :root {
-  --cor-primaria: #2e8b57; /* Verde Clínica */
-  --cor-secundaria: #4caf50; /* Verde Claro */
+  --cor-primaria: #2e8b57;
+  --cor-secundaria: #4caf50;
   --cor-fundo: #f4f9f4;
   --cor-texto: #333;
   --cor-alerta: #fff3cd;
@@ -166,3 +166,103 @@ body {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+/* ==========================================
+   HOVER - Cards de Tratamento (Home)
+   ========================================== */
+.card-tratamento {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-tratamento:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 14px 28px rgba(46, 139, 87, 0.15);
+}
+.card-tratamento:hover h3 {
+  color: var(--cor-secundaria);
+}
+
+/* ==========================================
+   HOVER - Imagem da página de agendamento
+   ========================================== */
+.img-agendar-wrapper {
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.img-agendar-wrapper img {
+  width: 100%;
+  display: block;
+}
+
+/* ==========================================
+   Página de Consulta do Cliente
+   ========================================== */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: bold;
+}
+.status-pendente  { background: #fff3cd; color: #856404; }
+.status-realizado { background: #d4edda; color: #155724; }
+.status-cancelado { background: #f8d7da; color: #721c24; }
+
+.consulta-vazia {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+  font-size: 1rem;
+}
+
+/* ==========================================
+   Auth pages (login / cadastro cliente)
+   ========================================== */
+.auth-card {
+  max-width: 480px;
+  margin: 1rem auto;
+}
+.auth-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.auth-icon {
+  font-size: 2.5rem;
+}
+.auth-header h2 {
+  color: var(--cor-primaria);
+  margin: 0.5rem 0 0.25rem;
+}
+.auth-header p {
+  color: #888;
+  margin: 0;
+  font-size: 0.95rem;
+}
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+.auth-footer a {
+  color: var(--cor-primaria);
+  font-weight: 600;
+  text-decoration: none;
+}
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+.cliente-info-bar {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  background: var(--cor-fundo);
+  border: 1px solid #d4edda;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
