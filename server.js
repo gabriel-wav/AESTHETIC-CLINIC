@@ -294,14 +294,8 @@ app.post('/admin/procedimentos/salvar', loginRequired, async (req, res) => {
     }
 });
 
-// Excluir: tenta hard delete; se tiver agendamentos vinculados, desativa
 app.post('/admin/procedimentos/excluir/:id', loginRequired, async (req, res) => {
-    try {
-        await db.query('DELETE FROM procedimentos WHERE id = ?', [req.params.id]);
-    } catch (error) {
-        // FK constraint: desativa em vez de excluir
-        await db.query('UPDATE procedimentos SET ativo = 0 WHERE id = ?', [req.params.id]);
-    }
+    await db.query('UPDATE procedimentos SET ativo = 0 WHERE id = ?', [req.params.id]);
     res.redirect('/admin/procedimentos');
 });
 
