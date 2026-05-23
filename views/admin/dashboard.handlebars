@@ -1,7 +1,64 @@
-<div class="card" style="text-align: center;">
-    <h2>Painel Administrativo</h2>
-    <p>Bem-vindo ao sistema de gestão da Clínica Revitalize.</p>
-    <br>
-    <a href="/admin/procedimentos" class="btn btn-primary">Gerenciar Procedimentos</a>
-    <a href="/admin/agendamentos" class="btn btn-secondary">Ver Agendamentos</a>
+<div class="card">
+    <h2>Painel de Indicadores da Clínica</h2>
+    <p>Acompanhamento estratégico em tempo real dos atendimentos solicitados.</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+        <div style="background-color: #ffffff; padding: 1.5rem; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); border-left: 5px solid #7f8c8d; text-align: center;">
+            <h4 style="margin: 0; color: #7f8c8d; text-transform: uppercase; font-size: 0.85rem;">Total Solicitado</h4>
+            <p style="margin: 0.5rem 0 0 0; font-size: 2rem; font-weight: bold; color: #333;">{{total}}</p>
+        </div>
+        <div style="background-color: #ffffff; padding: 1.5rem; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); border-left: 5px solid #f39c12; text-align: center;">
+            <h4 style="margin: 0; color: #f39c12; text-transform: uppercase; font-size: 0.85rem;">Status Pendente</h4>
+            <p style="margin: 0.5rem 0 0 0; font-size: 2rem; font-weight: bold; color: #333;">{{pendentes}}</p>
+        </div>
+        <div style="background-color: #ffffff; padding: 1.5rem; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); border-left: 5px solid var(--cor-primaria); text-align: center;">
+            <h4 style="margin: 0; color: var(--cor-primaria); text-transform: uppercase; font-size: 0.85rem;">Atendimentos Realizados</h4>
+            <p style="margin: 0.5rem 0 0 0; font-size: 2rem; font-weight: bold; color: #333;">{{realizados}}</p>
+        </div>
+    </div>
 </div>
+
+<div class="card">
+    <h3 style="color: var(--cor-primaria); margin-top: 0; margin-bottom: 1.5rem; text-align: center;">Agendamentos por Tipo de Procedimento</h3>
+    <div style="max-width: 600px; margin: 0 auto; height: 300px; position: relative;">
+        <canvas id="chartProcura"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Captura os dados injetados pelo backend
+    const dadosBrutos = {{{graficoDados}}};
+    
+    const labels = dadosBrutos.map(item => item.procedimento);
+    const dataValues = dadosBrutos.map(item => item.quantidade);
+
+    const ctx = document.getElementById('chartProcura').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Quantidade de Agendamentos',
+                data: dataValues,
+                backgroundColor: '#2E8B57', // Verde Clínica
+                borderColor: '#246B43',
+                borderWidth: 1,
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 1 }
+                }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+</script>

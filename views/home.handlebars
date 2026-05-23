@@ -1,26 +1,52 @@
-<div class="card" style="text-align: center;">
-    <h1 style="color: var(--cor-primaria);">Bem-vindo à Clínica Revitalize</h1>
-    <p>O seu bem-estar e beleza são a nossa prioridade. Conheça nossos tratamentos exclusivos.</p>
-    <a href="/agendar" class="btn btn-primary" style="margin-top: 10px;">Agendar Avaliação</a>
+<div class="card" style="text-align: center; background-size: cover; padding: 4rem 2rem; background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80');">
+    <h1 style="color: var(--cor-primaria); font-size: 2.5rem; margin-bottom: 0.5rem;">🌿 Clínica Estética Revitalize</h1>
+    <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 1.5rem auto;">Tecnologia avançada e cuidados personalizados para realçar a sua beleza natural com segurança e excelência médica.</p>
+    <a href="/agendar" class="btn btn-primary" style="font-size: 1.1rem; padding: 0.8rem 2rem;">Agendar Horário Online</a>
+</div>
+
+<h2 style="color: var(--cor-primaria); margin-top: 3rem; margin-bottom: 1.5rem;">Tratamentos em Destaque</h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+    <div class="card" style="padding: 0; overflow: hidden; border-top: none; border-bottom: 4px solid var(--cor-secundaria);">
+        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=500&q=80" alt="Limpeza de Pele" style="width: 100%; height: 200px; object-fit: cover;">
+        <div style="padding: 1.5rem;">
+            <h3 style="color: var(--cor-primaria); margin-top: 0;">Cuidados Faciais</h3>
+            <p style="font-size: 0.95rem; color: #666;">Renovação celular profunda, controle de oleosidade e hidratação com ativos dermatológicos de última geração.</p>
+        </div>
+    </div>
+
+    <div class="card" style="padding: 0; overflow: hidden; border-top: none; border-bottom: 4px solid var(--cor-secundaria);">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=500&q=80" alt="Massagem e Drenagem" style="width: 100%; height: 200px; object-fit: cover;">
+        <div style="padding: 1.5rem;">
+            <h3 style="color: var(--cor-primaria); margin-top: 0;">Estética Corporal</h3>
+            <p style="font-size: 0.95rem; color: #666;">Procedimentos focados em redução de medidas, combate à retenção de líquidos e modelagem corporal relaxante.</p>
+        </div>
+    </div>
+
+    <div class="card" style="padding: 0; overflow: hidden; border-top: none; border-bottom: 4px solid var(--cor-secundaria);">
+        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=500&q=80" alt="Procedimentos Avançados" style="width: 100%; height: 200px; object-fit: cover;">
+        <div style="padding: 1.5rem;">
+            <h3 style="color: var(--cor-primaria); margin-top: 0;">Alta Tecnologia</h3>
+            <p style="font-size: 0.95rem; color: #666;">Peelings químicos, microagulhamento e procedimentos guiados para rejuvenescimento e clareamento de manchas.</p>
+        </div>
+    </div>
 </div>
 
 <div class="card">
-    <h2>Nossos Procedimentos</h2>
+    <h2 style="color: var(--cor-primaria); margin-bottom: 1rem;">Nossa Tabela de Valores</h2>
     <table class="tabela-dados">
         <thead>
             <tr>
-                <th>Tratamento</th>
-                <th>Descrição</th>
-                <th>Duração</th>
-                <th>Valor</th>
+                <th>Procedimento Humano</th>
+                <th>Tempo Estimado</th>
+                <th>Investimento</th>
             </tr>
         </thead>
         <tbody>
             {{#each procedimentos}}
             <tr>
-                <td><strong>{{this.nome}}</strong></td>
-                <td>{{this.descricao}}</td>
-                <td>{{this.duracao_minutos}} min</td>
+                <td><strong>{{this.nome}}</strong><br><small style="color: #666;">{{this.descricao}}</small></td>
+                <td>{{this.duracao_minutos}} minutos</td>
                 <td>R$ {{this.preco}}</td>
             </tr>
             {{/each}}

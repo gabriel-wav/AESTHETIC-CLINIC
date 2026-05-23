@@ -1,0 +1,27 @@
+<div class="card">
+    <h2 style="color: var(--cor-primaria);">Consultar seu Agendamento</h2>
+    <form action="/consultar" method="POST">
+        <div class="form-group">
+            <label>Digite seu nome completo</label>
+            <input type="text" name="cliente_nome" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+</div>
+
+{{#if searched}}
+<div class="card">
+    <h3>Resultado da Busca:</h3>
+    <table class="tabela-dados">
+        {{#each agendamentos}}
+        <tr>
+            <td>{{this.procedimento_nome}}</td>
+            <td>{{this.data_formatada}}</td>
+            <td><strong>{{this.status}}</strong></td>
+        </tr>
+        {{else}}
+        <p>Nenhum agendamento encontrado.</p>
+        {{/each}}
+    </table>
+</div>
+{{/if}}

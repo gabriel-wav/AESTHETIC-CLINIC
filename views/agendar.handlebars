@@ -1,27 +1,36 @@
 <div class="card">
+  <img src="https://images.unsplash.com/photo-1552693673-1bf958618a4a?auto=format&fit=crop&w=800&q=80" 
+         alt="Clínica Estética" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+    
     <h2 style="color: var(--cor-primaria);">Realize seu Agendamento</h2>
-    <form action="/agendar" method="POST">
-        <div class="form-group">
-            <label for="cliente_nome">Seu Nome Completo</label>
-            <input type="text" id="cliente_nome" name="cliente_nome" required>
-        </div>
-        <div class="form-group">
-            <label for="cliente_telefone">Telefone / WhatsApp</label>
-            <input type="text" id="cliente_telefone" name="cliente_telefone" required>
-        </div>
-        <div class="form-group">
-            <label for="procedimento_id">Procedimento Desejado</label>
-            <select name="procedimento_id" required>
-                <option value="" disabled selected>Selecione...</option>
-                {{#each procedimentos}}
-                <option value="{{this.id}}">{{this.nome}} - R$ {{this.preco}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="data_hora">Data e Horário</label>
-            <input type="datetime-local" id="data_hora" name="data_hora" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Confirmar Agendamento</button>
-    </form>
+    </div>
+  <form action="/agendar" method="POST">
+    <div class="form-group">
+      <label for="cliente_nome">Seu Nome Completo</label>
+      <input type="text" id="cliente_nome" name="cliente_nome" required />
+    </div>
+    <div class="form-group">
+      <label for="cliente_telefone">Telefone / WhatsApp</label>
+      <input
+        type="text"
+        id="cliente_telefone"
+        name="cliente_telefone"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="procedimento_id">Procedimento Desejado</label>
+      <select name="procedimento_id" required>
+        <option value="" disabled selected>Selecione...</option>
+        {{#each procedimentos}}
+          <option value="{{this.id}}">{{this.nome}} - R$ {{this.preco}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="data_hora">Data e Horário</label>
+      <input type="datetime-local" id="data_hora" name="data_hora" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Confirmar Agendamento</button>
+  </form>
 </div>

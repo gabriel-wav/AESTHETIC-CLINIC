@@ -1,13 +1,16 @@
 <div class="card">
-    <h2>Agendamentos Recebidos</h2>
+    <h2 style="color: var(--cor-primaria); margin-bottom: 1.5rem;">Gerenciar Agendamentos</h2>
+    <p>Aqui você pode controlar o status de cada agendamento ou cancelá-lo, se necessário.</p>
+    
     <table class="tabela-dados">
         <thead>
             <tr>
                 <th>Data / Hora</th>
                 <th>Cliente</th>
-                <th>Telefone</th>
+                <th>Contato</th>
                 <th>Procedimento</th>
                 <th>Status</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -17,9 +20,37 @@
                 <td>{{this.cliente_nome}}</td>
                 <td>{{this.cliente_telefone}}</td>
                 <td>{{this.procedimento_nome}}</td>
-                <td>{{this.status}}</td>
+                <td>
+                    {{#if (eq this.status "Realizado")}}
+                        <span style="color: #155724; font-weight: bold;">✔ Realizado</span>
+                    {{else if (eq this.status "Cancelado")}}
+                        <span style="color: #721c24; font-weight: bold;">❌ Cancelado</span>
+                    {{else}}
+                        <span style="color: #856404; font-weight: bold;">⏳ Pendente</span>
+                    {{/if}}
+                </td>
+                <td style="display: flex; gap: 8px; align-items: center;">
+                    <form action="/admin/agendamentos/status/{{this.id}}" method="POST">
+                        <select name="status" onchange="this.form.submit()" style="padding: 0.3rem;">
+                            <option value="Pendente" {{#if (eq this.status "Pendente")}}selected{{/if}}>Pendente</option>
+                            <option value="Realizado" {{#if (eq this.status "Realizado")}}selected{{/if}}>Realizado</option>
+                        </select>
+                    </form>
+
+                    <form action="/admin/agendamentos/cancelar/{{this.id}}" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar este agendamento?');">
+                        <button type="submit" class="btn btn-danger" style="padding: 0.3rem 0.6rem; font-size: 0.85rem;">Cancelar</button>
+                    </form>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="6" style="text-align: center;">Nenhum agendamento registrado.</td>
             </tr>
             {{/each}}
         </tbody>
     </table>
+</div>
+
+<div style="margin-top: 1rem;">
+    <a href="/admin" class="btn btn-secondary">Voltar ao Painel</a>
 </div>
